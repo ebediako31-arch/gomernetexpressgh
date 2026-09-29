@@ -1,0 +1,41 @@
+# BEGIN xSpeed Static Cache
+# The directives (lines) between "BEGIN xSpeed Static Cache" and "END xSpeed Static Cache" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_METHOD} ^GET$
+  RewriteCond %{QUERY_STRING} ^$
+  RewriteCond %{HTTP_COOKIE} !(wordpress_logged_in|comment_author|wp\-postpass_|wordpress_no_cache|wp\-postpass|edd_items_in_cart|woocommerce_items_in_cart|fct_cart_hash|comment_|woocommerce_|wordpress|xf_|edd_|jetpack|yith_wcwl_session_|yith_wrvp_|wpsc_|ecwid|ec_|bookly) [NC]
+  RewriteCond %{REQUEST_URI} ^(.*?)/?$
+  RewriteCond %{DOCUMENT_ROOT}/wp-content/cache/xspeed-static/%{HTTP_HOST}%1/index.html -f
+  RewriteRule ^ /wp-content/cache/xspeed-static/%{HTTP_HOST}%1/index.html [E=XSPEED_STATIC_HIT:1,L]
+</IfModule>
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header always set X-XSpeed-Cache "HIT (static)"
+  </FilesMatch>
+</IfModule>
+# END xSpeed Static Cache
+
+
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /gomernetexpressgh/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /gomernetexpressgh/index.php [L]
+</IfModule>
+
+# END WordPress
+# BEGIN xSpeed CDN
+# The directives (lines) between "BEGIN xSpeed CDN" and "END xSpeed CDN" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+# END xSpeed CDN
