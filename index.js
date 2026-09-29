@@ -1,3 +1,13 @@
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
 app.get('/', (req, res) => {
-  res.send('<h1>GomerNet Express API is running!</h1>');
+    res.send('<h1>GomerNet Express API is running</h1>');
 });
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+module.exports = app;
